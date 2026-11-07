@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento ESP32</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; background-color: #f0f0f0;}
+        .card { background: white; width: 300px; margin: 20px auto; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h1 { color: #333; }
+        .val { font-size: 2.5em; font-weight: bold; color: #007BFF; }
+        .unit { font-size: 1em; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Estação Meteorológica</h1>
+    
+    <div class="card">
+        <h3>Temperatura</h3>
+        <div class="val"><span id="temp">--</span> <span class="unit">°C</span></div>
+    </div>
+    <div class="card">
+        <h3>Umidade</h3>
+        <div class="val"><span id="hum">--</span> <span class="unit">%</span></div>
+    </div>
+    <div class="card">
+        <h3>Pressão</h3>
+        <div class="val"><span id="pres">--</span> <span class="unit">hPa</span></div>
+    </div>
+
+    <script>
+        // Função para buscar dados do ESP32
+        function fetchSensor() {
+            fetch('/api/dados')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('temp').innerText = data.temp.toFixed(3);
+                    document.getElementById('hum').innerText = data.hum.toFixed(3);
+                    document.getElementById('pres').innerText = data.pres.toFixed(3);
+                })
+                .catch(e => console.log(e));
+        }
+        setInterval(fetchSensor, 200); // Atualiza a cada 0.2 segundos
+        fetchSensor();
+    </script>
+</body>
+</html>

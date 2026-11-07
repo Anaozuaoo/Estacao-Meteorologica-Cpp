@@ -1,0 +1,46 @@
+# Build and artifact directories
+build/
+build*/
+out/
+cmake-build-*/
+.ninja*
+
+# Compiled binaries and object files
+*.o
+*.a
+*.elf
+*.bin
+*.hex
+*.map
+*.d
+*.exe
+
+# ESP-IDF specific
+sdkconfig
+sdkconfig.old
+sdkconfig.ci
+managed_components/
+dependencies.lock
+
+# Secret and credential files (Prevents leaking credentials)
+wifi_credentials.h
+wifi.txt
+credentials.h
+*.secret
+
+# Heavy media & zip deliverables
+*.zip
+*.mp4
+
+# IDE and Editor configurations
+.vscode/
+.idea/
+.vs/
+.clangd/
+*.swp
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
