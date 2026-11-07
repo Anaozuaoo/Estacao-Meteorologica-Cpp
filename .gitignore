@@ -44,3 +44,4 @@ credentials.h
 .DS_Store
 Thumbs.db
 desktop.ini
+*.bat
